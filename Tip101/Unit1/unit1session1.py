@@ -130,4 +130,139 @@ print(what_time_is_it(12))
 # Bust!
 # Nice hand!
 # Hit me!
-d
+def blackjack(score):
+    if score == 21:
+        print("Blackjack!")
+    elif score > 21:
+        print("Bust!")
+    elif score >= 17 and score < 21:
+        print("Nice hand!")
+    else:
+        print("Hit me!")
+
+blackjack(21)
+blackjack(24)
+blackjack(19)
+blackjack(10)
+
+'''
+Problem 9: First Item
+Write a function get_first() that takes in a list as a parameter and returns the first item in the list. Return None if the list is empty.
+
+def get_first(lst):
+    pass
+Example Input: [3,1,6,7,5]
+Example Output: 3
+
+Note: pass is a keyword that is used as a placeholder for future code
+'''
+def get_first(lst):
+    if len(lst) > 0:
+        return lst[0]
+    else:
+        return None
+print(get_first([3,1,6,7,5]))
+print(get_first([]))
+
+'''
+Problem 10: Last Item
+Write a function get_last() that takes in a list as a parameter and returns the last item in the list. Return None if the list is empty.
+
+def get_last(lst):
+    pass
+Example Input: [3,1,6,7,5]
+Example Output: 5
+
+✨ AI Hint: Getting the length of a list
+'''
+def get_last(lst):
+    if len(lst) > 0:
+        return lst[-1]
+    else:
+        return None
+print(get_last([3,1,6,7,5]))
+print(get_last([]))
+
+'''
+Problem 11: Counter
+Write a function counter() that uses the range function to print numbers between 1 and a given stop value (inclusive).
+
+def counter(stop):
+    pass
+Example Usage: counter(7). Example Output:
+
+1
+2
+3
+4
+5
+6
+7
+'''
+
+def counter(stop):
+    for i in range(1, stop+1):
+        print(i)
+counter(7)
+
+'''
+Problem 13: Total Sum
+Write a function sum_positive_range() that returns the sum of numbers from 1 to a given stop value (inclusive).
+
+def sum_positive_range(stop):
+    pass
+Example Usage: sum = sum_positive_range(6)
+Example Result: sum = 21
+'''
+def sum_positive_range(stop):
+    sum = 0
+    for i in range(1, stop+1):
+        sum += i
+    return(sum)
+sum = sum_positive_range(6)
+print(sum)
+
+'''
+Problem 14: Total Sum in Range
+Write a function sum_range() that returns the sum of numbers from a given start value to a given stop value (inclusive).
+
+def sum_range(start, stop):
+    pass
+Example Usage: sum = sum_range(3, 9)
+Example Result: sum = 42
+'''
+def sum_range(start, stop):
+    sum = 0
+    for i in range(start, stop+1):
+        sum += i
+    return sum
+sum = sum_range(3, 9)
+print(sum)
+
+'''
+Problem 15: Negative Numbers
+Write a function print_negatives() that takes a list of integers lst and prints all negative numbers in the list.
+
+def print_negatives(lst):
+Example Usage: print_negatives([3,-2,2,1,-5])
+Example Output:
+
+-2
+-5
+Example Usage: print_negatives([1,2,3,4,5])
+Example Output:
+
+None
+'''
+# def print_negatives(lst):
+#     for i in range(len(lst)):
+#         if lst[i] < 0:
+#             print(lst[i])
+
+def print_negatives(lst):
+    for item in lst:
+        if item < 0:
+            print(item)
+
+print_negatives([3,-2,2,1,-5])
+print_negatives([1,2,3,4,5])
