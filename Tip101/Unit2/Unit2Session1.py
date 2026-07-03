@@ -299,3 +299,81 @@ report_card = {"Math": "A", "Science": "C", "History": "A", "Art": "B", "English
 print(calculate_gpa(report_card))
 Example Output: 3.3333333333333335
 '''
+# def calculate_gpa(report_card):
+#     grade_points = {
+#         "A": 4,
+#         "B": 3,
+#         "C": 2,
+#         "D": 1,
+#         "F": 0
+#     }
+    
+#     total_points = 0
+#     num_courses = len(report_card)
+    
+#     for grade in report_card.values():
+#         total_points += grade_points[grade]
+    
+#     gpa = total_points / num_courses if num_courses > 0 else 0
+#     return gpa
+
+def calculate_gpa(report_card):
+    total = 0
+    # count = len(report_card.keys())
+    count = len(report_card)
+    # for k, v in report_card.items():
+    for v in report_card.values():
+        if v == "A":
+            total +=4
+        elif v == "B":
+            total += 3
+        elif v == "C":
+            total += 2
+        elif v == "D":
+            total += 1
+        else:
+            total += 0
+        
+    return total / count if count > 0 else 0
+# Example Usage:
+# "A" = 4
+# "B" = 3
+# "C" = 2
+# "D" = 1
+# "F" = 0
+
+report_card = {"Math": "A", "Science": "C", "History": "A", "Art": "B", "English": "B", "Spanish": "A"}
+print(calculate_gpa(report_card))
+# Example Output: 3.3333333333333335
+
+'''
+Problem 7: Best Book
+Imagine you are working on a book review software like Goodreads. Write a function named highest_rated() that returns the book with the highest rating.
+
+The function should take in a list of dictionaries named books as a parameter. Each dictionary represents data associated with a book, including its title, author, and rating. The function should return the dictionary for the book with the highest rating.
+
+def highest_rated(books):
+    pass
+Example Input:
+
+books = [
+    {"title": "Tomorrow, and Tomorrow, and Tomorrow",
+     "author": "Gabrielle Zevin",
+     "rating": 4.18
+    },
+    {"title": "A Fortune For Your Disaster",
+     "author": "Hanif Abdurraqib",
+     "rating": 4.47
+    },
+    {"title": "The Seven Husbands of Evenlyn Hugo",
+     "author": "Taylor Jenkins Reid",
+     "rating": 4.40
+    }
+]
+Expected Output:
+
+{"title": "A Fortune For Your Disaster",
+ "author": "Hanif Abdurraqib",
+ "rating": 4.47
+}
+'''
