@@ -377,3 +377,61 @@ Expected Output:
  "rating": 4.47
 }
 '''
+def highest_rated(books):
+    highest = 0.0
+    position = 0
+    for i in range(len(books)):
+        if books[i].get("rating") > highest:
+            highest = books[i].get("rating")
+            position = i
+    return books[position]
+
+# Example Input:
+books = [
+    {"title": "Tomorrow, and Tomorrow, and Tomorrow",
+     "author": "Gabrielle Zevin",
+     "rating": 4.18
+    },
+    {"title": "A Fortune For Your Disaster",
+     "author": "Hanif Abdurraqib",
+     "rating": 4.47
+    },
+    {"title": "The Seven Husbands of Evenlyn Hugo",
+     "author": "Taylor Jenkins Reid",
+     "rating": 4.40
+    }
+]
+print(highest_rated(books))
+# Expected Output:
+# {"title": "A Fortune For Your Disaster",
+#  "author": "Hanif Abdurraqib",
+#  "rating": 4.47
+# }
+
+'''
+Problem 8: Index-Value Map
+Write a function index_to_value_map() that takes in a list lst and returns a dictionary that maps the index of each element in lst to its value.
+
+def index_to_value_map(lst):
+    pass
+Example Input: lst = ["apple", "banana", "cherry"]
+
+Example Output: {0: "apple", 1: "banana", 2: "cherry"}
+'''
+# def index_to_value_map(lst):
+#     index_value_dict = {}
+#     for i in range(len(lst)):
+#         index_value_dict[i] = lst[i]
+#     return index_value_dict
+
+def index_to_value_map(lst):
+    dic = {}
+    for i in range(len(lst)):
+        dic[i] = lst[i]
+    return dic
+        
+# Example Input: 
+lst = ["apple", "banana", "cherry"]
+
+# Example Output: {0: "apple", 1: "banana", 2: "cherry"}
+print(index_to_value_map(lst))
