@@ -143,7 +143,427 @@ print(node_1.value, "->", node_1.next.value)
 # Jigglypuff -> Wigglytuff 
 # Ditto -> Jigglypuff
 
+'''
+Problem 4: Get Tail
+Write a function get_tail() that takes in the head of a linked list as a parameter.
 
+Return the value of the tail. If the list is empty, return None.
+
+Note: The "tail" of a list is the last element in the linked list. Equivalent to lst[-1] in a normal list.
+
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+
+def get_tail(head):
+	pass
+Example Usage:
+
+# Build: num1 -> num2 -> num3
+num1 = Node("num1")
+num2 = Node("num2")
+num3 = Node("num3")
+num1.next = num2
+num2.next = num3
+
+head = num1
+tail = get_tail(head)   # or get_tail(num1)
+print(tail)             # expected: num3
+Example Output: num3
+
+💡 Hint: Linked List Traversal
+'''
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+
+def get_tail(head):
+	current = head
+	if head is None:
+		return None
+	else:
+		while current.next is not None:
+			current = current.next
+	return current, current.value
+
+# Example Usage:
+# Build: num1 -> num2 -> num3
+num1 = Node("num1")
+num2 = Node("num2")
+num3 = Node("num3")
+num1.next = num2
+num2.next = num3
+head = num1
+tail = get_tail(head)   # or get_tail(num1)
+print(tail)             # expected: num3
+# Example Output: num3
+
+'''
+Problem 5: Replace Node
+Using the Node class, write a function ll_replace() that updates in place every node whose value == original to have value = replacement. The function returns None.
+
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+		
+def ll_replace(head, original, replacement):
+	pass
+
+ 
+def to_string(head): # to test your list
+    parts, cur = [], head
+    while cur:
+        parts.append(str(cur.value))
+        cur = cur.next
+    return " -> ".join(parts) if parts else "EMPTY"
+Example Usage:
+
+num3 = Node(5)
+num2 = Node(6, num3)
+num1 = Node(5, num2)
+# initial linked list: 5 -> 6 -> 5
+
+head = num1
+ll_replace(head, 5, "banana")
+updated linked list: "banana" -> 6 -> "banana"
+'''
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+		
+def ll_replace(head, original, replacement):
+	current = head
+
+	while(current is not None):
+		if current.value == original:
+			current.value = replacement
+			
+			# print (f"{current.value} ->")
+		# else:
+			# print (f"{current.value} ->")
+		current = current.next
+	# return head
+ 
+def to_string(head): # to test your list
+    parts, cur = [], head
+    while cur:
+        parts.append(str(cur.value))
+        cur = cur.next
+    return " -> ".join(parts) if parts else "EMPTY"
+	
+# Example Usage:
+num3 = Node(5)
+num2 = Node(6, num3)
+num1 = Node(5, num2)
+# initial linked list: 5 -> 6 -> 5
+head = num1
+ll_replace(head, 5, "banana")
+print(to_string(head))
+# print(head.value) # test
+
+# updated linked list: "banana" -> 6 -> "banana"
+
+'''
+Problem 6: List Nodes
+Write a function listify_first_n() that takes in a head of a linked list and a non-negative integer n as parameters.
+
+The function returns a list of values of the first n nodes.
+
+If n is greater than the length of the linked list, return a list of the values of all nodes in the linked list.
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+
+def listify_first_n(head, n):
+	pass
+Example Usage:
+
+# linked list: a -> b -> c
+head = a
+lst = listify_first_n(head,2)
+print(lst)
+
+# linked list: j -> k -> l 
+head2 = j
+lst2 = listify_first_n(head2,5)
+print(lst2)
+Example Output:
+
+['a', 'b']
+['j', 'k', 'l']
+'''
+
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+
+def listify_first_n(head, n):
+	count = 0
+	current = head
+	lst = []
+
+	while (current and count < n): # loop stops when either you reach the end (current == None) or you collected n elements (count == n)
+		lst.append(current.value)
+		current = current.next
+		count += 1
+
+	return lst
+
+# Example Usage:
+# linked list: a -> b -> c
+c = Node("c")
+b = Node("b", c)
+a = Node("a", b)
+
+head = a
+# head = "a"
+lst = listify_first_n(head,2)
+print(lst)
+
+# linked list: j -> k -> l 
+l = Node("l")
+k = Node("k", l)
+j = Node("j", k)
+
+head2 = j
+lst2 = listify_first_n(head2,5)
+print(lst2)
+
+# Example Output:
+# ['a', 'b']
+# ['j', 'k', 'l']
+
+'''
+Problem 7: Insert Value
+Write a function ll_insert() that takes in a head of a linked list, a value val, and an index i as parameters.
+
+The function should insert a new Node with value val at index i of the linked list, then return the head of the linked list.
+
+If i is greater than the length of the list, insert the new node at the end of the list.
+Hint: Linked lists do not have built-in indices so you will need to track the indices yourself.
+
+Write a helper function to help you print the new list!
+
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+		
+def ll_insert(head, val, i):
+	pass
+Example Usage:
+
+# linked list: 3 -> 8 -> 12 -> 9
+ll_insert(head, 20, 2)
+
+# result linked list: 3 -> 8 -> 20 -> 12 -> 9
+'''
+# important
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+		
+def ll_insert(head, val, i):
+    new_node = Node(val)
+
+    # Case 1: Empty list OR insert at head
+    if head is None or i == 0:
+        new_node.next = head
+        return new_node
+
+    current = head
+    count = 0
+
+    # Traverse to position OR last node
+    while current.next is not None and count < i - 1:
+        current = current.next
+        count += 1
+
+    # Insert node
+    new_node.next = current.next
+    current.next = new_node
+
+    return head
+
+# '2nd' attempt
+	new_node = Node(val)
+
+	# # edge case
+	# if head is None:
+	# 	return new_node
+	
+	# # Case 1: insert at head
+	# if i == 0:
+	# 	new_node.next = head
+	# 	return new_node
+	
+	# current = head
+	# index = 0
+
+    # # Move to node BEFORE index i
+	# while current and index < i - 1:
+	# 	current = current.next
+	# 	index += 1
+
+    # # Insert if possible
+	# if current:
+	# 	new_node.next = current.next
+	# 	current.next = new_node
+		
+	# return head
+# -------------------------------------------
+# `1st` attempt
+	# current = head
+	# index = 0
+	# # need to create a new node
+	# new_node = Node(val)
+
+	# if(not head): # if linked list is empty
+	# 	head = new_node
+
+	# # while(current and index < i): 
+	# # 	if (index == i):
+	# # 		temp = current.next
+	# # 		# current.next = val
+	# # 		current.next = new_node
+	# # 		current.next.next = temp
+	# # 		break
+
+	# # not right code, correct test case by accident
+	# while(current and index < i ):  # not right code, correct test case by accident
+	# 	temp = current.next
+	# 	current.next = new_node
+	# 	current.next.next = temp
+
+	# 	# new_node.next = current.next
+	# 	# current.next = new_node
+
+	# 	current = current.next
+	# 	index += 1
+	# 	# 3 -> 8 -> 12 -> 9
+	# 	# 3 -> 20 -> 8 -> 12 -> 9
+	# 	# 3 -> 20 -> 8 -> 12 -> 9
+	# 	# 3 -> 77 -> 20 -> 8 -> 12 -> 9
+	# 	# 3 -> 25 -> 77 -> 20 -> 8 -> 12 -> 9
+	# 	# 3 -> 55 -> 8 -> 12 -> 9
+	
+	# while current and index < i - 1: # need to stop before index i, not index < i, should be index < i - 1
+	# 	current = current.next
+	# 	index += 1
+
+	# new_node.next = current.next
+	# current.next = new_node
+
+	# # If i is greater than the length of the list, insert the new node at the end of the list.
+	# if (index < i):
+	# 	# current.next = val
+	# 	current.next = new_node
+
+	# return head
+	
+
+# def printLL(head):
+# 	current = head
+def to_string(head): # to test your list
+    parts, cur = [], head
+    while cur:
+        parts.append(str(cur.value))
+        cur = cur.next
+    return " -> ".join(parts) if parts else "EMPTY"
+
+def print_list(head):
+    current = head
+    while current:
+        print(current.value, end=" -> ")
+        current = current.next
+    print("None")
+
+# Example Usage:
+# linked list: 3 -> 8 -> 12 -> 9
+
+d = Node("9")
+c = Node("12", d)
+b = Node("8", c)
+a = Node("3", b)
+head = a
+
+# to_string(head)
+# print(to_string(head))
+print_list(head)
+ll_insert(head, 20, 2)
+# to_string(head)
+# print(to_string(head))
+print_list(head)
+
+# result linked list: 3 -> 8 -> 20 -> 12 -> 9
+
+ll_insert(head, 99, 0)
+# print(to_string(head))
+print_list(head)
+# # result linked list: 99 -> 3 -> 8 -> 20 -> 12 -> 9
+
+ll_insert(head, 77, 1)
+# print(to_string(head))
+print_list(head)
+# # result linked list: 99 -> 77 -> 3 -> 8 -> 20 -> 12 -> 9
+
+ll_insert(head, 25, 2)
+# print(to_string(head))
+print_list(head)
+# # result linked list: 99 -> 77 -> 25 -> 3 -> 8 -> 20 -> 12 -> 9
+
+ll_insert(head, 55, 8)
+# print(to_string(head))
+print_list(head)
+# # result linked list: 99 -> 77 -> 20 -> 3 -> 8 -> 20 -> 12 -> 9 -> 55
+
+'''
+Problem 8: Linked Listify
+Write a function list_to_linked_list() that takes in a list lst as a parameter and converts it to a linked list. The function should return the head of the linked list.
+
+class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
+
+def list_to_linked_list(lst):
+    pass
+Example Usage:
+
+normal_list = ["Betty", "Veronica", "Archie", "Jughead"]
+linked_list = list_to_linked_list(normal_list)
+
+
+# This prints ONLY the head node's value:
+print(linked_list.value)   # => "Betty"
+
+# (Optional) Traverse to print the whole linked list:
+current = linked_list
+while current:
+    end_arrow = " -> " if current.next else "\n"
+    print(current.value, end=end_arrow)
+    current = current.next
+
+
+# Print the head node's VALUE:
+print(linked_list.value)        # expected: Betty
+
+Example Output:
+
+Betty
+
+Betty -> Veronica -> Archie -> Jughead
+'''
+
+
+#################################################################################################### 
 '''
 Problem Set Version 2
 Problem 1: Poker Two-Pair Hand
@@ -206,6 +626,7 @@ def is_two_pair(player_hand):
 	
 	return count == 2
 
+print("---------------------")
 card_one = Card("Hearts", "Ace")
 card_two = Card("Hearts", "4")
 card_three = Card("Diamonds", "Ace")
