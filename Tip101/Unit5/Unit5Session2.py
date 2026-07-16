@@ -371,29 +371,30 @@ class Node:
 		self.next = next
 		
 def ll_insert(head, val, i):
-    new_node = Node(val)
-
-    # Case 1: Empty list OR insert at head
-    if head is None or i == 0:
-        new_node.next = head
-        return new_node
-
-    current = head
-    count = 0
-
+	new_node = Node(val)
+	current = head
+	count = 0
+	
+	# Case 1: Empty list OR insert at head
+	if (head is None or i == 0):
+		new_node.next = head
+		head = new_node
+		# return new_node
+		return head
+	
     # Traverse to position OR last node
-    while current.next is not None and count < i - 1:
-        current = current.next
-        count += 1
+	while current.next is not None and count < i - 1:
+		current = current.next
+		count += 1
 
     # Insert node
-    new_node.next = current.next
-    current.next = new_node
-
-    return head
-
+	new_node.next = current.next
+	current.next = new_node
+	
+	return head
+# -------------------------------------------
 # '2nd' attempt
-	new_node = Node(val)
+	# new_node = Node(val)
 
 	# # edge case
 	# if head is None:
@@ -504,6 +505,8 @@ print_list(head)
 
 # result linked list: 3 -> 8 -> 20 -> 12 -> 9
 
+ll_insert(head, 10, 0)
+print_list(head)
 ll_insert(head, 99, 0)
 # print(to_string(head))
 print_list(head)
@@ -561,7 +564,152 @@ Betty
 
 Betty -> Veronica -> Archie -> Jughead
 '''
+class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
 
+def list_to_linked_list(lst):
+	head = Node(lst[0])
+	i = 1
+	current = head
+
+	while (i < len(lst)):
+		temp = Node(lst[i])
+		current.next = temp
+		i += 1
+		current = current.next
+
+	return head
+	# for i in range(1, len(lst)):
+	# 	temp = Node(lst[i])
+
+# Example Usage:
+
+normal_list = ["Betty", "Veronica", "Archie", "Jughead"]
+linked_list = list_to_linked_list(normal_list)
+
+# This prints ONLY the head node's value:
+print(linked_list.value)   # => "Betty"
+
+# (Optional) Traverse to print the whole linked list:
+current = linked_list
+while current:
+    end_arrow = " -> " if current.next else "\n"
+    print(current.value, end=end_arrow)
+    current = current.next
+
+
+# Print the head node's VALUE:
+print(linked_list.value)        # expected: Betty
+
+# Example Output:
+# Betty
+
+# Betty -> Veronica -> Archie -> Jughead
+
+'''
+Problem 9: Doubly Linked List
+One of the drawbacks of a linked list is that it's difficult to go backwards, because each Node only knows about the Node in front of it. (E.g., A -> B -> C)
+
+A doubly linked list solves this problem! Instead of just having a next attribute, a doubly linked list also has a prev attribute that points to the Node before it. (E.g., A <-> B <-> C)
+
+Given the Node class for a doubly linked list below, recreate the list ["Poliwag", "Poliwhirl", "Poliwrath"] as a doubly linked list.
+
+class Node:
+	def __init__(self, value, next = None, prev = None):
+		self.value = value
+		self.next = next
+		self.prev = prev
+Example Usage: (after completing the problem with variable names poliwag, poliwhirl, and poliwrath):
+
+print(poliwhirl.prev.value, "<->", poliwhirl.value, "<->", poliwhirl.next.value)
+Example Output:
+
+Poliwag <-> Poliwhirl <-> Poliwrath
+'''
+class Node:
+	def __init__(self, value, next = None, prev = None):
+		self.value = value
+		self.next = next
+		self.prev = prev
+
+'''
+example:
+node_2 = Node("Wigglytuff")
+node_1 = Node("Jigglypuff", node_2)
+# Example Usage (after completing the problem with variable names node_1 and node_2):
+print(node_1.value, "->", node_1.next.value)
+print(node_2.value, "->", node_2.next)
+'''
+# Example Usage: (after completing the problem with variable names poliwag, poliwhirl, and poliwrath):
+
+# wrong code, not defined before using it, NameError: name 'poliwhirl' is not defined
+# Poliwrath = Node("Poliwrath", None, poliwhirl)
+# poliwhirl = Node("Poliwhirl", Poliwrath, Poliwag)
+
+poliwrath = Node("Poliwrath", None)
+
+poliwhirl = Node("Poliwhirl", poliwrath)
+poliwrath.prev = poliwhirl
+
+Poliwag = Node("Poliwag", poliwhirl , None)
+poliwhirl.prev = Poliwag
+
+# print
+print(poliwhirl.prev.value, "<->", poliwhirl.value, "<->", poliwhirl.next.value)
+
+# Example Output:
+# Poliwag <-> Poliwhirl <-> Poliwrath
+
+
+'''
+Problem 10: Print Backwards
+Write a function print_reverse() that takes in the tail of a doubly linked list as a parameter.
+
+It should print out the values of the linked list in reverse order, each separated by a space.
+
+class Node:
+	def __init__(self, value, next = None, prev = None):
+		self.value = value
+		self.next = next
+		self.prev = prev
+		
+def print_reverse(tail):
+	pass
+Example Usage: (using the doubly linked list from Problem 9)
+
+#              (head)                       (tail)
+# Linked List: Poliwag <-> Poliwhirl <-> Poliwrath
+print_reverse(poliwrath)
+Example Output: Poliwrath Poliwhirl Poliwag
+
+'''
+class Node:
+	def __init__(self, value, next = None, prev = None):
+		self.value = value
+		self.next = next
+		self.prev = prev
+		
+def print_reverse(tail):
+	current = tail
+
+	# while(current.prev is not None): # equivenlant to 	while(current.prev):
+	while(current.prev):
+		print(current.value)
+		current = current.prev
+
+	print(current.value)
+	print(current.value, current)
+	print(current)
+
+# Example Usage: (using the doubly linked list from Problem 9)
+
+#              (head)                       (tail)
+# Linked List: Poliwag <-> Poliwhirl <-> Poliwrath
+
+print_reverse(poliwrath)
+# Example Output: Poliwrath Poliwhirl Poliwag
 
 #################################################################################################### 
 '''
